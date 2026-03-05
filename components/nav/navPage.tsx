@@ -17,8 +17,8 @@ const NavPage = () => {
   const { data: session } = useSession();
 
   return (
-    <div className="hidden md:flex md:fixed w-full border-b-2 border-gray-500 bg-gray-800/20 justify-center z-50">
-      <nav className="flex justify-center gap-6 py-4">
+    <div className="hidden md:flex md:fixed  w-full border-b-2 border-gray-500 bg-gray-800/20 justify-center z-50">
+      <nav className="flex  justify-center gap-6 py-4">
         {navList.map((item) => (
           <Link
             key={item.name}

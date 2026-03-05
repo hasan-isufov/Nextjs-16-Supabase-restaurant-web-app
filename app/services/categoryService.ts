@@ -4,6 +4,7 @@ import { supabase } from "@/lib/supabase/client/supabase";
 export type Category = {
   id: string; // Supabase'de uuid kullandıysan string olmalı, int8 ise number
   name: string;
+  icon: string;
   slug?: string;
 };
 

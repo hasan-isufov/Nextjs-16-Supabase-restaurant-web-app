@@ -85,8 +85,8 @@ async function onSubmit(data: z.infer<typeof formSchema>) {
 
 
   return (
-    <div className="flex flex-col w-full  justify-center items-center min-h-screen py-8">
-      <Card className="w-full max-w-lg mx-auto bg-gray-600/20 shadow-2xl border-2 border-gray-300">
+    <div className="flex flex-col w-full  justify-center items-center h-screen py-8 ">
+      <Card className="w-full max-w-lg mx-auto bg-gray-600/20 shadow-2xl border-2 border-gray-300 ">
         <CardHeader>
           <CardTitle>Contact with Us</CardTitle>
           <CardDescription>Contact with us for any question</CardDescription>
@@ -191,7 +191,7 @@ async function onSubmit(data: z.infer<typeof formSchema>) {
         </CardContent>
         <CardFooter>
           <Field orientation="horizontal">
-            <Button type="submit" form="form-rhf-demo" className='w-full'>
+            <Button type="submit" form="form-rhf-demo" className="w-full">
               Submit
             </Button>
           </Field>
