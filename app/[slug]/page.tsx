@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { getAllProducts } from "../services/allProductService";
 import { getProductsByCategorySlug } from "../services/productService";
+import { AddToCartButton } from '../../components/basket/cartButtin/AddToCartButton';
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -8,6 +9,7 @@ type Props = {
 
 export default async function CategoryPage({ params }: Props) {
   const { slug } = await params;
+
 
 
 
@@ -23,7 +25,9 @@ export default async function CategoryPage({ params }: Props) {
       </h1>
 
       {products.length === 0 ? (
-        <p className="text-gray-500">Bu kategoride ürün bulunamadı.</p>
+        <p className="text-gray-500">
+          Can&rsquo;t find any products in this category.
+        </p>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {products.map((product) => (
@@ -41,13 +45,14 @@ export default async function CategoryPage({ params }: Props) {
                   />
                 </div>
               )}
-              <h2 className="text-xl font-semibold text-amber-800">
+              <h2 className="text-xl font-semibold text-amber-800 capitalize">
                 {product.name}
               </h2>
               <p className="text-gray-600 text-sm mt-1">
                 {product.description}
               </p>
-              <p className="text-amber-700 font-bold mt-2">{product.price} ₺</p>
+              <p className="text-amber-700 font-bold mt-2">{product.price} £</p>
+              <AddToCartButton product={product} />
             </div>
           ))}
         </div>

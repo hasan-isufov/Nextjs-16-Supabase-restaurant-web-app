@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { Toaster } from "sonner";
 import NavPage from "../components/nav/navPage";
 import Providers from "../components/providers/providers";
+import { CartProvider } from "./context/CartContext";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -19,8 +20,11 @@ export default function RootLayout({
     <html lang="en">
       <body className="flex flex-row w-full justify-center">
         <Providers>
-          <NavPage />
-          {children}
+          <CartProvider>
+            <NavPage />
+
+            {children}
+          </CartProvider>
           <Toaster richColors />
         </Providers>
       </body>

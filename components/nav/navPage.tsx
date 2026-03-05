@@ -1,14 +1,14 @@
 "use client";
-import { useSession, signOut } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { BasketSheet } from "../basket/basketComponent";
 
 const navList = [
   { name: "Home", href: "/" },
   { name: "Menu", href: "/menu" },
   { name: "Book a Table", href: "/book-a-table" },
-  { name: "About", href: "/about" },
   { name: "Contact", href: "/contact" },
 ];
 
@@ -73,6 +73,9 @@ const NavPage = () => {
             >
               Register
             </Link>
+            <div>
+              <BasketSheet />
+            </div>
           </div>
         )}
       </nav>

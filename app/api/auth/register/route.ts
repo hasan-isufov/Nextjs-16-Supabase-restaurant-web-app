@@ -16,7 +16,7 @@ export async function POST(request: Request) {
 
     if (!name || !email || !password) {
       return NextResponse.json(
-        { error: "Tüm alanlar zorunlu" },
+        { error: "All fields are required" },
         { status: 400 },
       );
     }
@@ -29,7 +29,7 @@ export async function POST(request: Request) {
 
     if (existing) {
       return NextResponse.json(
-        { error: "Bu email zaten kayıtlı" },
+        { error: "This email is already registered" },
         { status: 400 },
       );
     }
@@ -50,6 +50,6 @@ export async function POST(request: Request) {
     return NextResponse.json({ user: data }, { status: 201 });
   } catch (err) {
     console.error("Register error:", err);
-    return NextResponse.json({ error: "Sunucu hatası" }, { status: 500 });
+    return NextResponse.json({ error: "server error" }, { status: 500 });
   }
 }

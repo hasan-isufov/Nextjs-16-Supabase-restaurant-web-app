@@ -1,15 +1,15 @@
 // app/(auth)/login/page.tsx
 "use client";
-import { useState } from "react";
 import { signIn } from "next-auth/react";
-import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { z } from "zod";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 import { toast } from "sonner";
+import { z } from "zod";
 
 const loginSchema = z.object({
-  email: z.string().email("Geçerli bir email girin"),
-  password: z.string().min(6, "Şifre en az 6 karakter olmalı"),
+  email: z.string().email("Invalid email address"),
+  password: z.string().min(6, "Password must be at least 6 characters long"),
 });
 
 export default function LoginPage() {
@@ -38,9 +38,9 @@ export default function LoginPage() {
     });
 
     if (res?.error) {
-      toast.error("Email veya şifre hatalı");
+      toast.error("Login failed, please check your credentials and try again.");
     } else {
-      toast.success("Giriş başarılı! Yönlendiriliyorsunuz...");
+      toast.success("Login successful! Redirecting...");
       setTimeout(() => router.push("/"), 1000);
     }
 
@@ -48,8 +48,12 @@ export default function LoginPage() {
   };
 
   const handleGoogle = async () => {
-    toast.loading("Google'a yönlendiriliyorsunuz...");
+    toast.loading("You are being redirected to Google...");
     await signIn("google", { callbackUrl: "/" });
+  };
+  const handleFacebook = async () => {
+    toast.loading("You are being redirected to Facebook...");
+    await signIn("facebook", { callbackUrl: "/" });
   };
 
   return (
@@ -150,7 +154,7 @@ export default function LoginPage() {
           {/* Google */}
           <button
             onClick={handleGoogle}
-            className="w-full flex items-center justify-center gap-3 py-3 bg-white hover:bg-gray-100 text-gray-800 font-semibold rounded-xl transition-all duration-200 hover:shadow-lg"
+            className="w-full flex items-center justify-center gap-3 mb-2 py-3 bg-white hover:bg-gray-100 text-gray-800 font-semibold rounded-xl transition-all duration-200 hover:shadow-lg"
           >
             <svg className="w-5 h-5" viewBox="0 0 24 24">
               <path
@@ -171,6 +175,31 @@ export default function LoginPage() {
               />
             </svg>
             Continue with Google
+          </button>
+
+          {/* Facebook */}
+          <button
+            onClick={handleFacebook}
+            className="w-full flex items-center justify-center gap-3 py-3 bg-white hover:bg-gray-100 text-gray-800 font-semibold rounded-xl transition-all duration-200 hover:shadow-lg"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              x="0px"
+              y="0px"
+              width="25"
+              height="25"
+              viewBox="0 0 48 48"
+            >
+              <path
+                fill="#3F51B5"
+                d="M42,37c0,2.762-2.238,5-5,5H11c-2.761,0-5-2.238-5-5V11c0-2.762,2.239-5,5-5h26c2.762,0,5,2.238,5,5V37z"
+              ></path>
+              <path
+                fill="#FFF"
+                d="M34.368,25H31v13h-5V25h-3v-4h3v-2.41c0.002-3.508,1.459-5.59,5.592-5.59H35v4h-2.287C31.104,17,31,17.6,31,18.723V21h4L34.368,25z"
+              ></path>
+            </svg>
+            Continue with Facebook
           </button>
 
           {/* Kayıt ol linki */}
