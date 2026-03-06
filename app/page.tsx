@@ -1,11 +1,14 @@
 import CategoryCom from "../components/homeComponents/category";
 import { CarouselPlugin } from "../components/homeComponents/homeSlider";
+import MenuSec from '../components/menuSection/menuSec';
 
 export default function HomePage() {
   return (
-    <main className="flex flex-col w-full  p-4 gap-6">
+    <main >
       <CarouselPlugin />
       <CategoryCom />
+      <MenuSec />
+
     </main>
   );
 }

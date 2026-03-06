@@ -1,7 +1,9 @@
 // app/layout.tsx
 import type { Metadata } from "next";
 import { Toaster } from "sonner";
-import NavPage from "../components/nav/navPage";
+
+import FooterPage from "../components/general/footer/footerPage";
+import NavPage from "../components/general/nav/navPage";
 import Providers from "../components/providers/providers";
 import { CartProvider } from "./context/CartContext";
 import "./globals.css";
@@ -18,12 +20,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="flex flex-row w-full justify-center">
+      <body className='flex flex-col min-h-screen  bg-gray-900 overflow-x-hidden'>
         <Providers>
           <CartProvider>
             <NavPage />
-
             {children}
+            <FooterPage />
           </CartProvider>
           <Toaster richColors />
         </Providers>

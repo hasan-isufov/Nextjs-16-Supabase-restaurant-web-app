@@ -41,7 +41,7 @@ export function CarouselPlugin() {
   ];
 
   return (
-    <div className=" container w-full flex justify-center px-12 mx-auto mt-20">
+    <div className=" container w-full flex justify-center px-12 mx-auto mt-30">
       <Carousel
         plugins={[plugin.current]}
         className="w-full"

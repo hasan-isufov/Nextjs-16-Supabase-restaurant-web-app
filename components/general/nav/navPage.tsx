@@ -3,7 +3,7 @@ import { signOut, useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { BasketSheet } from "../basket/basketComponent";
+import { BasketSheet } from "../../basket/basketComponent";
 
 const navList = [
   { name: "Home", href: "/" },
@@ -17,8 +17,8 @@ const NavPage = () => {
   const { data: session } = useSession();
 
   return (
-    <div className="hidden md:flex md:fixed  w-full border-b-2 border-gray-500 bg-gray-800/20 justify-center z-50">
-      <nav className="flex  justify-center gap-6 py-4">
+    <div className="hidden md:flex md:fixed w-full border-b-2 border-gray-500 bg-gray-800/20 justify-center z-50">
+      <nav className="flex justify-center gap-6 py-4">
         {navList.map((item) => (
           <Link
             key={item.name}
@@ -35,9 +35,9 @@ const NavPage = () => {
         ))}
 
         {session ? (
-          // Giriş yapılmışsa → Register ve Login linkleri gizlenir
+          // Giriş yapılmışsa
           <div className="flex items-center gap-3">
-            {session.user?.image && ( // ← undefined kontrolü
+            {session.user?.image && (
               <Image
                 src={session.user.image}
                 width={32}
@@ -55,10 +55,11 @@ const NavPage = () => {
             >
               Sign Out
             </button>
+            <BasketSheet /> {/* ✅ session varken de göster */}
           </div>
         ) : (
-          // Giriş yapılmamışsa → Login ve Register göster
-          <div className="flex gap-4">
+          // Giriş yapılmamışsa
+          <div className="flex items-center gap-4">
             <Link
               href="/login"
               className={`px-3 py-2 text-md font-bold transition-colors
@@ -73,9 +74,7 @@ const NavPage = () => {
             >
               Register
             </Link>
-            <div>
-              <BasketSheet />
-            </div>
+            <BasketSheet />
           </div>
         )}
       </nav>

@@ -1,7 +1,7 @@
 import Image from "next/image";
+import { AddToCartButton } from "../../components/basket/cartButton/AddToCartButton";
 import { getAllProducts } from "../services/allProductService";
 import { getProductsByCategorySlug } from "../services/productService";
-import { AddToCartButton } from '../../components/basket/cartButtin/AddToCartButton';
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -10,16 +10,13 @@ type Props = {
 export default async function CategoryPage({ params }: Props) {
   const { slug } = await params;
 
-
-
-
   const products =
     slug === "menu"
       ? await getAllProducts()
       : await getProductsByCategorySlug(slug);
 
   return (
-    <main className="container flex flex-col w-full h-screen p-4 top-20 absolute gap-6  mx-auto">
+    <main className="container  w-full  h-screen p-4   gap-6  mx-auto">
       <h1 className="text-3xl font-bold justify-center text-green-500 mb-6 capitalize">
         {slug === "menu" ? "Menu" : slug}
       </h1>
