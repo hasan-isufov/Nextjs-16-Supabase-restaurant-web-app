@@ -109,7 +109,7 @@ export function BookingForm() {
 
   return (
     <div className="flex flex-col w-full  justify-center items-center h-screen py-8">
-      <Card className="w-full max-w-lg mx-auto bg-gray-600/20 shadow-2xl border-2 border-gray-300">
+      <Card className="w-full max-w-lg mx-auto bg-gray-600/20 shadow-2xl border-2 border-gray-300 text-white">
         <CardHeader>
           <CardTitle>Book a table</CardTitle>
           <CardDescription>
